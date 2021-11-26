@@ -1,0 +1,12 @@
+#migration-page{margin-bottom: 40px;}
+#migration-page .wrap-box .box-content {max-width: 1200px;margin: 0 auto;}
+#migration-page .page-header{margin: 0;border: none;}
+#migration-page .wrap-box .box-action .button-action {margin-top: 10px;}
+#migration-page label{font-weight: normal;}
+#migration-page .icon-check::before{content: '';}
+#migration-page .wrap-box{background: #fff;}
+#migration-page ul.step-anchor li{margin-bottom: 0;}
+#migration-page ul.step-anchor{border: 1px solid #ddd;background: #fff;}
+#migration-page ul.step-anchor > li > a,
+#migration-page ul.step-anchor > li > a:hover {background: #fff;color: #000;}
+#migration-page ul.step-anchor > li > a::after{border-left: 30px solid #fff;}

@@ -1,0 +1,6 @@
+#migration-page{margin-bottom: 40px;}
+#migration-page .wrap-box .box-content {max-width: 1200px;margin: 0 auto;}
+#migration-page .page-header{margin: 0;border: none;}
+#migration-page .wrap-box .box-action .button-action {margin-top: 10px;}
+#migration-page label{font-weight: normal;}
+#migration-page .icon-check::before{content: '';}
