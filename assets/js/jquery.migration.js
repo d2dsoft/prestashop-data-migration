@@ -259,12 +259,17 @@
             function validateSelectDuplicate(elementId){
                 var element = $(elementId);
                 if(element.length < 0){
-                    return true;
+                    return false;
                 }
                 var check = new Array();
                 $('select', element).each(function(index, value) {
                     var elm_val = $(value).val();
-                    if(elm_val){
+                    var elm_opt = $(value).find(':selected');
+                    var duplicate = elm_opt.data('duplicate');
+                    if(duplicate == undefined || !duplicate){
+                        duplicate = 0;
+                    }
+                    if(elm_val && duplicate == 0){
                         check[index] = elm_val;
                     }
                 });
@@ -283,6 +288,111 @@
                 return result;
             }
 
+            function validateSelectsDuplicate(elementClass){
+                var elements = $(elementClass);
+                if(elements.length < 0){
+                    return false;
+                }
+                var resultAll = false;
+                elements.each(function(i, v){
+                    var element = $(v);
+                    var check = new Array();
+                    $('select', element).each(function(index, value) {
+                        var elm_val = $(value).val();
+                        var elm_opt = $(value).find(':selected');
+                        var duplicate = elm_opt.data('duplicate');
+                        if(duplicate == undefined || !duplicate){
+                            duplicate = 0;
+                        }
+                        if(elm_val && duplicate == 0){
+                            check[index] = elm_val;
+                        }
+                    });
+                    var result = false;
+                    check.forEach(function(value, index) {
+                        check.forEach(function(value_tmp, index_tmp) {
+                            if (value_tmp === value && index !== index_tmp) {
+                                result = true;
+                            }
+                        });
+                    });
+                    if(result){
+                        $('.message-valid', element).html('Mapping value can\'t not be the same. Please change!').show();
+                        scrollToErrorMessage(element);
+                        resultAll = true;
+                    }
+                });
+                return resultAll;
+            }
+
+            function validateCustomFieldMapType(){
+                var elements = $('.cf-section-entity-map', container);
+                if(elements.length < 0){
+                    return false;
+                }
+                var resultAll = false;
+                elements.each(function(i, v){
+                    var element = $(v);
+                    var result = false;
+                    $('.form-group', element).each(function(i1, v1){
+                        var group = $(v1);
+                        var sf = group.find('.cf_source');
+                        var tf = group.find('.cf_target');
+                        if(!sf.length || !tf.length){
+                            return true;
+                        }
+                        var sfo = sf.find(':selected');
+                        var tfo = tf.find(':selected');
+                        var st = sfo.data('columnType');
+                        var tt = tfo.data('columnType');
+                        var sdt = sfo.data('detailType');
+                        var tdt = tfo.data('detailType');
+                        var check = (sdt == tdt);
+                        if(check){
+                            if(!st || !tt || st == tt){
+                                return true;
+                            }
+                        }
+                        check = isDbTypeMapRight(st, tt);
+                        if(!check){
+                            $('.message-item-valid', group).html('Mapping type must be the similar. Please change!').show();
+                            result = true;
+                            return false;
+                        }
+                    });
+                    if(result){
+                        scrollToElement(element);
+                        resultAll = true;
+                    }
+                });
+                return resultAll;
+            }
+
+            function isDbTypeMapRight(source_type, target_type){
+                if(source_type == target_type){
+                    return true;
+                }
+                var supports = {
+                    'int': ['tinyint', 'smallint', 'mediumint'],
+                    'bigint': ['int', 'tinyint', 'smallint', 'mediumint'],
+                    'double': ['float'],
+                    'decimal': ['double', 'float'],
+                    'datetime': ['date'],
+                    'varchar': ['int', 'tinyint', 'smallint', 'mediumint', 'bigint', 'double', 'float', 'decimal', 'date', 'datetime', 'timestamp', 'time', 'year', 'char'],
+                    'mediumtext': ['int', 'tinyint', 'smallint', 'mediumint', 'bigint', 'double', 'float', 'decimal', 'date', 'datetime', 'timestamp', 'time', 'year', 'char', 'varchar', 'tinytext'],
+                    'text': ['int', 'tinyint', 'smallint', 'mediumint', 'bigint', 'double', 'float', 'decimal', 'date', 'datetime', 'timestamp', 'time', 'year', 'char', 'varchar', 'tinytext', 'mediumtext'],
+                    'longtext': ['int', 'tinyint', 'smallint', 'mediumint', 'bigint', 'double', 'float', 'decimal', 'date', 'datetime', 'timestamp', 'time', 'year', 'char', 'varchar', 'tinytext', 'mediumtext', 'text'],
+                    'mediumblob': ['int', 'tinyint', 'smallint', 'mediumint', 'bigint', 'double', 'float', 'decimal', 'date', 'datetime', 'timestamp', 'time', 'year', 'char', 'varchar', 'tinytext', 'mediumtext', 'text', 'tinyblob'],
+                    'blob': ['int', 'tinyint', 'smallint', 'mediumint', 'bigint', 'double', 'float', 'decimal', 'date', 'datetime', 'timestamp', 'time', 'year', 'char', 'varchar', 'tinytext', 'mediumtext', 'text', 'tinyblob', 'mediumblob'],
+                    'longblob': ['int', 'tinyint', 'smallint', 'mediumint', 'bigint', 'double', 'float', 'decimal', 'date', 'datetime', 'timestamp', 'time', 'year', 'char', 'varchar', 'tinytext', 'mediumtext', 'text', 'tinyblob', 'mediumblob', 'blob']
+                };
+                if(supports[target_type] == undefined){
+                    return false;
+                }
+                var support = supports[target_type];
+                return (support.indexOf(source_type) != -1);
+            }
+
             function validateCheckRequired(elementId){
                 var element = $(elementId);
                 if(element.length < 0){
@@ -298,10 +408,18 @@
 
             function resetValidate(elementId){
                 $('.message-valid', elementId).hide();
+                $('.message-item-valid', elementId).hide();
             }
 
             function scrollToErrorMessage(element){
+                if(element.length < 1){
+                    return false;
+                }
                 $(window).scrollTop( $('.message-valid', element).offset().top - $(window).height() + 50);
+            }
+
+            function scrollToElement(element){
+                $(window).scrollTop(element.offset().top + 50);
             }
 
             function createCookie(value) {
@@ -416,12 +534,12 @@
                         if(result.next_type){
                             processBarAnimate(result.next_type, false);
                         }
-                        importEntity(result.next_type);
+                        delayImportEntity(result.next_type);
                     } else if(response.status == 'process'){
                         var result = response.data;
                         processBarResult(result.type, result.total, result.import, result.error, result.point);
                         processBarAnimate(result.type, false);
-                        importEntity(result.type);
+                        delayImportEntity(result.type);
                     } else {
                         processRetry(type);
                     }
@@ -429,6 +547,19 @@
                     consoleMessage('#import-wrap .console-box', getRetryMessage(true));
                     processRetry(type);
                 });
+            }
+
+            function delayImportEntity(type){
+                importEntity(type);
+                /*var time = parseFloat(settings.delay);
+                if(time > 0){
+                    var delay = time * 1000;
+                    setTimeout(function(){
+                        importEntity(type);
+                    }, delay);
+                } else {
+                    importEntity(type);
+                }*/
             }
 
             function processBarResult(entity, total, imported, error, point)
@@ -508,6 +639,21 @@
                 }
                 var result = $('<span class="platform-icon-base platform-icon-' + item.id + '">' + item.text + '</span>');
                 return result;
+            }
+
+            function styleTable(element){
+                var i = 0;
+                $('.form-group', element).each(function(i, v){
+                    $(v).removeClass('even').removeClass('odd');
+                    var style_class = '';
+                    if(i%2){
+                        style_class = 'odd';
+                    } else {
+                        style_class = 'even';
+                    }
+                    $(v).addClass(style_class);
+                    i++;
+                });
             }
 
             function run(){
@@ -761,7 +907,9 @@
                     if(!validateSelectRequired('#website-section')
                         || !validateSelectRequired('#language-section')
                         || validateSelectDuplicate('#language-section')
-                        || !validateCheckRequired('#entity-section')){
+                        || !validateCheckRequired('#entity-section')
+                        || validateSelectsDuplicate('.cf-section-entity-map')
+                        || validateCustomFieldMapType()){
                         hideLoading();
                         return false;
                     }
@@ -780,6 +928,45 @@
                     }).fail(function(xhr, status, error){
                         hideLoading();
                         showAlert(getRetryMessage());
+                    });
+                });
+
+                $(container).on('click', '#cf-section .cf-add-field', function(){
+                    var _this = $(this);
+                    var cf_section = _this.closest('.cf-section-entity');
+                    var clone = $('.cf-clone', cf_section);
+                    var content_table = $('.mapping-table', cf_section);
+                    var html = $(clone.html());
+                    var index = cf_section.data('fieldIndex');
+                    var entity = cf_section.data('entity');
+                    html.find('.cf_source').attr('name', 'cf_source_' + entity + '[' + index + ']');
+                    html.find('.cf_target').attr('name', 'cf_target_' + entity + '[' + index + ']');
+                    content_table.append(html);
+                    index = index + 1;
+                    cf_section.data('fieldIndex', index);
+                    styleTable(content_table);
+                    $('select', html).select2({width: '100%'});
+                });
+
+                $(container).on('click', '#cf-section .remove-field', function(){
+                    var _this = $(this);
+                    var form = _this.closest('.form-group');
+                    var cf_section = _this.closest('.cf-section-entity');
+                    form.remove();
+                    var content_table = $('.mapping-table', cf_section);
+                    styleTable(content_table);
+                });
+
+                $(container).on('change', '#seo-plugin-select', function(){
+                    var _this = $(this);
+                    var seo_value = _this.val();
+                    if(!seo_value){
+                        return false;
+                    }
+                    var seoPlugin = seo_value.split('|##|');
+                    $(container).find('.seo-config-section').css({display: 'none'});
+                    seoPlugin.forEach(function(v, i){
+                        $(container).find('#' + v).css({display: 'block'});
                     });
                 });
 

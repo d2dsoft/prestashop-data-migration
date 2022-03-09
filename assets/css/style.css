@@ -10,8 +10,10 @@
 #migration-page .form-group .form-label{width: 40%;float: left;text-align: right;padding-right: 20px;}
 #migration-page .form-group .form-field{width: 60%;float: left;}
 #migration-page .form-group .form-input{padding: 4px;display: block;border: 1px solid #ccc;width: 100%;border-radius: 2px;font-size: 16px;}
+#migration-page .form-group .form-action{float: right;text-align: right;margin-right: 5px;}
 #migration-page .width50{width: 50% !important;}
 #migration-page .width80{width: 80% !important;}
+#migration-page .width90{width: 90% !important;}
 #migration-page .icon-success-wrap{padding-left:30px;display: block;background: url("../img/icon-success.png") no-repeat bottom left;}
 #migration-page .icon-success{width:20px;height:20px;display: inline-block;background: url("../img/icon-success.png") no-repeat bottom left;vertical-align: middle;}
 #migration-page .icon-warning-wrap{padding-left:30px;display: block;background: url("../img/icon-warning.png") no-repeat bottom left;}
@@ -21,12 +23,14 @@
 #migration-page .alert-box.success {background:#e9ffd9 url('../img/icon-success.png') no-repeat 10px 50%;border:1px solid #a6ca8a;}
 #migration-page .alert-box.notice {background:#e3f7fc url('../img/icon-notice.png') no-repeat 10px 50%;border:1px solid #8ed9f6;}
 #migration-page .alert-box.error {background:#ffecec url('../img/icon-error.png') no-repeat 10px 50%;border:1px solid #f5aca6;}
-#migration-page label.message-valid{padding-left: 12px;background: url('../img/icon-arrow-up.gif') no-repeat top left; color: #ff0000;margin-top: 7px;}
+#migration-page label.message-valid, #migration-page label.message-item-valid{padding-left: 12px;background: url('../img/icon-arrow-up.gif') no-repeat top left; color: #ff0000;margin-top: 7px;}
 #migration-page .width50 label.message-valid{width: 200%;}
 #migration-page .btn-site{background: #4F44AE; color: #fff; border: none;}
 #migration-page .row-no-margin{margin-right: 0;margin-left: 0;}
 #migration-page .margin-center{margin: 0 auto !important;float: none;}
 #migration-page .top10{margin-top: 10px;}
+#migration-page .display-ib{display: inline-block !important;}
+#migration-page .cursor-pointer{cursor: pointer;}
 
 /* TOOLTIP */
 #migration-page .tooltip-group {outline: none;cursor: help;text-decoration: none;position: relative;display: inline-block;text-align: left;vertical-align: middle;}
@@ -166,6 +170,7 @@
 #migration-page #upload-wrap .form-group .upload-note{clear: both; padding: 10px 0; border-top: 1px solid #e5e5e5;display: none;}
 
 /* CONFIG CONTENT */
+#migration-page .cf-section-entity{margin-bottom: 15px;}
 
 /*SELECT PLATFORM*/
 .platform-select2-container .select2-results__option{line-height: 30px;}
