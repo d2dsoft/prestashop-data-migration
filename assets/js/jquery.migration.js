@@ -131,8 +131,19 @@
             function objectifyForm(form, extend) {
                 var formArray = form.serializeArray();
                 var returnArray = {};
+                var input_name = '', input_value = '';
                 for (var i = 0; i < formArray.length; i++){
-                    returnArray[formArray[i]['name']] = formArray[i]['value'];
+                    input_name = formArray[i]['name'];
+                    input_value = formArray[i]['value'];
+                    if(input_name.indexOf('[]') != -1){
+                        input_name = input_name.replace('[]', '');
+                        if(returnArray[input_name] == undefined){
+                            returnArray[input_name] = [];
+                        }
+                        returnArray[input_name].push(input_value);
+                    } else {
+                        returnArray[input_name] = input_value;
+                    }
                 }
                 if(extend != undefined){
                     returnArray = $.extend(extend, returnArray);
@@ -656,6 +667,207 @@
                 });
             }
 
+            function activeValidateExtra(element){
+                element.addClass('section-validate-extra');
+            }
+
+            function deactivateValidateExtra(element){
+                element.removeClass('section-validate-extra');
+            }
+
+            function registerDrupalCommerceEvent(){
+                registerEvent('change-entities', function(e, elm){
+                    var is_config_sdc_manufacturer = $('#section-sdc-manufacturer', container).length > 0;
+                    var is_config_sdc_category = $('#section-sdc-category', container).length > 0;
+                    var is_config_sdc_product = $('#section-sdc-product', container).length > 0;
+                    if(is_config_sdc_manufacturer || is_config_sdc_category || is_config_sdc_product){
+                        $('#entity-section .entity-input-type', container).each(function(){
+                            var input = $(this);
+                            var input_entity = input.data('entity');
+                            var is_checked = input.is(':checked');
+                            if(input_entity == 'manufacturers'){
+                                if(is_checked){
+                                    $('#section-sdc-manufacturer', container).css({display: 'block'});
+                                    activeValidateExtra($('#section-sdc-manufacturer-type', container));
+                                } else {
+                                    $('#section-sdc-manufacturer', container).css({display: 'none'});
+                                    deactivateValidateExtra($('#section-sdc-manufacturer-type', container));
+                                }
+                            }
+                            if(input_entity == 'categories'){
+                                if(is_checked){
+                                    $('#section-sdc-category', container).css({display: 'block'});
+                                    activeValidateExtra($('#section-sdc-category-type', container));
+                                } else {
+                                    $('#section-sdc-category', container).css({display: 'none'});
+                                    deactivateValidateExtra($('#section-sdc-category-type', container));
+                                }
+                            }
+                            if(input_entity == 'products'){
+                                if(is_checked){
+                                    $('#section-sdc-product', container).css({display: 'block'});
+                                } else {
+                                    $('#section-sdc-product', container).css({display: 'none'});
+                                }
+                            }
+                        });
+                    }
+
+                    var is_config_tdc_manufacturer = $('#section-tdc-manufacturer', container).length > 0;
+                    var is_config_tdc_category = $('#section-tdc-category', container).length > 0;
+                    var is_config_tdc_product = $('#section-tdc-product', container).length > 0;
+                    if(is_config_tdc_manufacturer || is_config_tdc_category || is_config_tdc_product){
+                        $('#entity-section .entity-input-type', container).each(function(){
+                            var input = $(this);
+                            var input_entity = input.data('entity');
+                            var is_checked = input.is(':checked');
+                            if(input_entity == 'manufacturers'){
+                                if(is_checked){
+                                    $('#section-tdc-manufacturer', container).css({display: 'block'});
+                                    activeValidateExtra($('#section-tdc-manufacturer-type', container));
+                                    activeValidateExtra($('#section-tdc-manufacturer .tdc-manufacturer-map', container));
+                                } else {
+                                    $('#section-tdc-manufacturer', container).css({display: 'none'});
+                                    deactivateValidateExtra($('#section-tdc-manufacturer-type', container));
+                                    deactivateValidateExtra($('#section-tdc-manufacturer .tdc-manufacturer-map', container));
+                                }
+                            }
+                            if(input_entity == 'categories'){
+                                if(is_checked){
+                                    $('#section-tdc-category', container).css({display: 'block'});
+                                    activeValidateExtra($('#section-tdc-category-type', container));
+                                    activeValidateExtra($('#section-tdc-category .tdc-category-map', container));
+                                } else {
+                                    $('#section-tdc-category', container).css({display: 'none'});
+                                    deactivateValidateExtra($('#section-tdc-category-type', container));
+                                    deactivateValidateExtra($('#section-tdc-category .tdc-category-map', container));
+                                }
+                            }
+                            if(input_entity == 'products'){
+                                if(is_checked){
+                                    $('#section-tdc-product', container).css({display: 'block'});
+                                    activeValidateExtra($('#section-tdc-product .tdc-product-map', container));
+                                } else {
+                                    $('#section-tdc-product', container).css({display: 'none'});
+                                    deactivateValidateExtra($('#section-tdc-product .tdc-product-map', container));
+                                }
+                            }
+                        });
+                    }
+                });
+
+                $(container).on('change', '#sdc-manufacturer-types', function(){
+                    var entityType = $(this).val();
+                    $('#section-sdc-manufacturer .sdc-manufacturer-map', container).css({display: 'none'});
+                    if(entityType != null){
+                        entityType.forEach(function(entity_type){
+                            $('#sdc-manufacturer-' + entity_type, container).css({display: 'block'});
+                        });
+                    }
+                });
+
+                $(container).on('change', '#sdc-category-types', function(){
+                    var categoryType = $(this).val();
+                    $('#section-sdc-category .sdc-category-map', container).css({display: 'none'});
+                    if(categoryType != null){
+                        categoryType.forEach(function(category_type){
+                            $('#sdc-category-' + category_type, container).css({display: 'block'});
+                        });
+                    }
+                });
+
+                $(container).on('change', '#tdc-manufacturer-types', function(){
+                    var entityType = $(this).val();
+                    $('#section-tdc-manufacturer .tdc-manufacturer-map', container).css({display: 'none'});
+                    if(entityType != null){
+                        entityType.forEach(function(entity_type){
+                            $('#tdc-manufacturer-' + entity_type, container).css({display: 'block'});
+                        });
+                    }
+                });
+
+                $(container).on('change', '#tdc-category-types', function(){
+                    var categoryType = $(this).val();
+                    $('#section-tdc-category .tdc-category-map', container).css({display: 'none'});
+                    if(categoryType != null){
+                        categoryType.forEach(function(category_type){
+                            $('#tdc-category-' + category_type, container).css({display: 'block'});
+                        });
+                    }
+                });
+            }
+
+            function triggerEvent(event_name, data){
+                $(container).trigger(event_name, data);
+            }
+
+            function registerEvent(event_name, callback){
+                $(container).on(event_name, callback);
+            }
+
+            function registerEvents(){
+                registerDrupalCommerceEvent();
+            }
+
+            function validateExtraSection(){
+                if($('.section-validate-extra', container).length < 1){
+                    return true;
+                }
+                var resultAll = true;
+                $('.section-validate-extra.section-validate-required', container).each(function(i, v){
+                    var section = $(this);
+                    var result = true;
+                    $('select', section).each(function(index, value) {
+                        var select = $(this);
+                        if(select.hasClass('ignore-required')){
+                            return;
+                        }
+                        var elm_val = $(value).val();
+                        if(!elm_val){
+                            result = false;
+                            return false;
+                        }
+                    });
+                    if(!result){
+                        resultAll = false;
+                        $('.message-valid', section).html('The mapping is required. Please select the missing mapping!').show();
+                        scrollToErrorMessage(section);
+                    }
+                });
+                if(!resultAll){
+                    return resultAll;
+                }
+                $('.section-validate-extra.section-validate-duplicate', container).each(function(i, v){
+                    var section = $(this);
+                    var check = new Array();
+                    $('select', section).each(function(index, value) {
+                        var elm_val = $(value).val();
+                        var elm_opt = $(value).find(':selected');
+                        var duplicate = elm_opt.data('ignore-duplicate');
+                        if(duplicate == undefined || !duplicate){
+                            duplicate = 0;
+                        }
+                        if(elm_val && duplicate == 0){
+                            check[index] = elm_val;
+                        }
+                    });
+                    var result = true;
+                    check.forEach(function(value, index) {
+                        check.forEach(function(value_tmp, index_tmp) {
+                            if (value_tmp === value && index !== index_tmp) {
+                                result = false;
+                            }
+                        });
+                    });
+                    if(!result){
+                        $('.message-valid', section).html('Mapping value can\'t not be the same. Please change!').show();
+                        scrollToErrorMessage(section);
+                        resultAll = false;
+                    }
+                });
+                return resultAll;
+            }
+
             function run(){
 
                 deleteCookie();
@@ -869,6 +1081,7 @@
                         var current = _this.closest('li');
                         current.find('ul input.entity-input-type').prop('checked', false);
                     }
+                    triggerEvent('change-entities', this);
                 });
 
                 $(container).on('click', '#config-wrap #entity-section #entity-input-all', function(){
@@ -880,6 +1093,7 @@
                         var current = _this.closest('#entity-section');
                         current.find('ul input.entity-input-type').prop('checked', false);
                     }
+                    triggerEvent('change-entities', this);
                 });
 
                 $(container).on('click', '#config-wrap .retry-action', function(){
@@ -909,7 +1123,8 @@
                         || validateSelectDuplicate('#language-section')
                         || !validateCheckRequired('#entity-section')
                         || validateSelectsDuplicate('.cf-section-entity-map')
-                        || validateCustomFieldMapType()){
+                        || validateCustomFieldMapType()
+                        || !validateExtraSection()){
                         hideLoading();
                         return false;
                     }
@@ -1051,11 +1266,13 @@
                 });
 
                 $(container).on('click', '.download-gateway-direct', function(){
-                    var token = $(this).parents('.form-group').find('input').val();
+                    var wrap = $(this).closest('.platform-type-info');
+                    var token_input = wrap.find('input.platform-connector-token');
+                    var token = token_input.val();
                     if(!token){
                         token = genToken();
                     }
-                    $(this).parents('.form-group').find('input').val(token);
+                    token_input.val(token);
                     var request_download = getRequestDownload();
                     var data = $.extend({
                         mg_token: token
@@ -1074,11 +1291,13 @@
                 });
 
                 $(container).on('click', '.download-gateway', function(){
-                    var token = $(this).parents('.form-group').find('input').val();
+                    var wrap = $(this).closest('.platform-type-info');
+                    var token_input = wrap.find('input.platform-connector-token');
+                    var token = token_input.val();
                     if(!token){
                         token = genToken();
                     }
-                    $(this).parents('.form-group').find('input').val(token);
+                    token_input.val(token);
                     var request = new XMLHttpRequest();
                     request.open('POST', settings.url, true);
                     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -1119,6 +1338,8 @@
                     url += '/migration_gateway/gateway.php';
                     window.open(url, '_blank');
                 });
+
+                registerEvents();
 
             }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
 	<name>d2ddatamigration</name>
-	<displayName><![CDATA[Data Migration]]></displayName>
+	<displayName><![CDATA[D2dSoft Data Migration]]></displayName>
 	<version><![CDATA[1.0.0]]></version>
 	<description><![CDATA[Migration data to PrestaShop.]]></description>
 	<author><![CDATA[D2dSoft]]></author>

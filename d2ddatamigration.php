@@ -43,7 +43,7 @@ class D2dDataMigration extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->l('Data Migration');
+        $this->displayName = $this->l('D2dSoft Data Migration');
         $this->description = $this->l('Migration data to PrestaShop.');
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
     }
