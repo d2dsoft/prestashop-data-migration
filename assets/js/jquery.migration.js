@@ -949,6 +949,7 @@
                         hideLoading();
                         if(response.status == 'success'){
                             $(response.wrap).html(response.html);
+                            $('.select2', response.wrap).select2({width: '100%'});
                         }
                     }).fail(function(xhr, status, error){
                         hideLoading();

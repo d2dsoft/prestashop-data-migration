@@ -14,6 +14,7 @@
 #migration-page .width50{width: 50% !important;}
 #migration-page .width80{width: 80% !important;}
 #migration-page .width90{width: 90% !important;}
+#migration-page .width100{width: 100% !important;}
 #migration-page .icon-success-wrap{padding-left:30px;display: block;background: url("../img/icon-success.png") no-repeat bottom left;}
 #migration-page .icon-success{width:20px;height:20px;display: inline-block;background: url("../img/icon-success.png") no-repeat bottom left;vertical-align: middle;}
 #migration-page .icon-warning-wrap{padding-left:30px;display: block;background: url("../img/icon-warning.png") no-repeat bottom left;}
@@ -31,6 +32,8 @@
 #migration-page .top10{margin-top: 10px;}
 #migration-page .display-ib{display: inline-block !important;}
 #migration-page .cursor-pointer{cursor: pointer;}
+#migration-page .display-flex{display: flex;}
+#migration-page .list-style{display: list-item; list-style-type: disc; list-style-position: inside;}
 
 /* TOOLTIP */
 #migration-page .tooltip-group {outline: none;cursor: help;text-decoration: none;position: relative;display: inline-block;text-align: left;vertical-align: middle;}
@@ -61,8 +64,10 @@
 #migration-page .checkbox-wrap .checkmark:after {left: 6px;top: 0;width: 7px;height: 15px;border: solid white;border-width: 0 3px 3px 0;-webkit-transform: rotate(45deg);-ms-transform: rotate(45deg);transform: rotate(45deg);}
 
 /* MAPPING */
-#migration-page .section-map{margin-bottom: 20px;}
+#migration-page .sections-group{border: 1px solid #ccc; padding: 10px;}
+#migration-page .section-map, #migration-page .child-section-map{margin-bottom: 20px;}
 #migration-page .section-map .section-title{font-size: 18px;}
+#migration-page .child-section-map .section-title{font-size: 16px;}
 #migration-page .mapping-table{width: 100%;border: 1px solid #e5e5e5;box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);}
 #migration-page .mapping-table .form-group .mapping-label{width: 50%;float: left;position: relative;}
 #migration-page .mapping-table .form-group .mapping-label .mapping-label-content{width: calc(100% - 30px);display: inline-block;overflow: hidden}
@@ -208,6 +213,7 @@
 .platform-icon-base.platform-icon-hhg{background-image: url("../img/platform/icon-hhg.png");}
 .platform-icon-base.platform-icon-hikashop{background-image: url("../img/platform/icon-hikashop.png");}
 .platform-icon-base.platform-icon-interspire{background-image: url("../img/platform/icon-interspire.png");}
+.platform-icon-base.platform-icon-j2store{background-image: url("../img/platform/icon-j2store.png");}
 .platform-icon-base.platform-icon-jigoshop{background-image: url("../img/platform/icon-jigoshop.png");}
 .platform-icon-base.platform-icon-joocart{background-image: url("../img/platform/icon-joocart.png");}
 .platform-icon-base.platform-icon-jshop{background-image: url("../img/platform/icon-jshop.png");}
