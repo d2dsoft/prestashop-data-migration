@@ -9,8 +9,10 @@
 - [HikaShop to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/452-1857-hikashop-to-prestashop-migration-module.html#/72-entities-1000)
 - [J2Store to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/495-2052-j2store-to-prestashop-migration-module.html#/72-entities-1000)
 - [JigoShop to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/550-2307-jigoshop-to-prestashop-migration-module.html#/72-entities-1000)
+- [JoomShopping to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/600-2547-joomshopping-to-prestashop-migration-module.html#/72-entities-1000)
 - [Loaded Commerce to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/71-277-loaded-to-prestashop-migration-module.html#/72-entities-1000)
 - [Magento to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/72-282-magento-to-prestashop-migration-module.html#/72-entities-1000)
+- [MarketPress to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/575-2427-marketpress-to-prestashop-migration-module.html#/72-entities-1000)
 - [OpenCart to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/73-287-opencart-to-prestashop-migration-module.html#/72-entities-1000)
 - [osCommerce to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/74-292-oscommerce-to-prestashop-migration-module.html#/72-entities-1000)
 - [OXID-eShop to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/75-297-oxid-eshop-to-prestashop-migration-module.html#/72-entities-1000)
@@ -31,8 +33,10 @@
 - [HikaShop](https://www.hikashop.com/)
 - [J2Store](https://www.j2store.org/)
 - JigoShop
+- [JoomShopping](https://extensions.joomla.org/extension/joomshopping/)
 - [Loaded Commerce](https://loadedcommerce.com/)
 - [Magento](https://magento.com/)
+- MarketPress
 - [OpenCart](https://www.opencart.com/)
 - [osCommerce](https://www.oscommerce.com/)
 - [OXID-eShop](https://www.oxid-esales.com)
@@ -54,3 +58,8 @@
 ## License
 
 [AFL](https://d2d-soft.com/license/AFL.txt)
+
+## Contact US
+Website: https://d2d-soft.com/ \
+Email: contact@d2d-soft.com \
+Youtube: https://www.youtube.com/@d2dsoft 
