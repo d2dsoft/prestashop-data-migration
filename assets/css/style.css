@@ -39,8 +39,8 @@
 #migration-page .tooltip-group {outline: none;cursor: help;text-decoration: none;position: relative;display: inline-block;text-align: left;vertical-align: middle;}
 #migration-page .tooltip-group .icon-tooltip{width: 20px;height: 20px;display: block;}
 #migration-page .tooltip-group .text-tooltip{border-bottom: 1px dotted #000000; outline: none;color:#000; cursor: help; text-decoration: none;position: relative;}
-#migration-page .tooltip-group span.tooltip-wrap {margin-left: -999em;position: absolute;padding: 0.8em 1em;}
-#migration-page .tooltip-group:hover span.tooltip-wrap {border-radius: 5px 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);-webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);-moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);font-family: Calibri, Tahoma, Geneva, sans-serif;position: absolute;left: 1em;top: 2em;z-index: 99;margin-left: 0;min-width: 500px;}
+#migration-page .tooltip-group span.tooltip-wrap {margin-left: -999em;position: absolute;padding: 0.8em 1em;display: none;}
+#migration-page .tooltip-group:hover span.tooltip-wrap {border-radius: 5px 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);-webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);-moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);font-family: Calibri, Tahoma, Geneva, sans-serif;position: absolute;left: 0;top: 100%;z-index: 99;margin-left: 0;min-width: 500px;display: block;}
 #migration-page .tooltip-group:hover span.tooltip-wrap em {font-family: Candara, Tahoma, Geneva, sans-serif;font-size: 1.2em;font-weight: bold;display: block;padding: 0.2em 0 0.6em 0;}
 #migration-page .tooltip-group.help .icon-tooltip{background: url("../img/icon-help.png") no-repeat bottom left;}
 #migration-page .tooltip-group.help span.tooltip-wrap {background: #9FDAEE;border: 1px solid #2BB0D7;}
@@ -258,6 +258,7 @@
 .platform-icon-base.platform-icon-weebly{background-image: url("../img/platform/icon-weebly.png");}
 .platform-icon-base.platform-icon-wix{background-image: url("../img/platform/icon-wix.png");}
 .platform-icon-base.platform-icon-woocommerce{background-image: url("../img/platform/icon-woocommerce.png");}
+.platform-icon-base.platform-icon-wpeasycart{background-image: url("../img/platform/icon-wpeasycart.png");}
 .platform-icon-base.platform-icon-wpecommerce{background-image: url("../img/platform/icon-wpecommerce.png");}
 .platform-icon-base.platform-icon-xcart{background-image: url("../img/platform/icon-xcart.png");}
 .platform-icon-base.platform-icon-xtcommerce{background-image: url("../img/platform/icon-xtcommerce.png");}
