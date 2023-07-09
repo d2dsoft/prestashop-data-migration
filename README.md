@@ -2,6 +2,7 @@
 [PrestaShop Data Migration Module](https://d2d-soft.com/25-prestashop-migration) is a solution for migrating data to PrestaShop from another platform. The module support migrating many entity types (taxes, manufacturers, categories, products, customers, orders, reviews) with many options. The module can work in the local environment or the online environment. We also provide the [Custom Migration Service](https://d2d-soft.com/migration-services/296-data-migration-customization.html) if you have a specific requirement. 
 
 ## Products
+- [AmeriCommerce to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/777-7254-americommerce-to-prestashop-migration-module.html#/72-entities-1000)
 - [BigCommerce to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/421-1707-bigcommerce-to-prestashop-migration-module.html#/72-entities-1000)
 - [CS-Cart to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/328-1407-cs-cart-to-prestashop-migration-module.html#/72-entities-1000)
 - [CubeCart to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/70-272-cubecart-to-prestashop-migration-module.html#/72-entities-1000)
@@ -17,6 +18,7 @@
 - [osCommerce to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/74-292-oscommerce-to-prestashop-migration-module.html#/72-entities-1000)
 - [OXID-eShop to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/75-297-oxid-eshop-to-prestashop-migration-module.html#/72-entities-1000)
 - [PrestaShop to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/76-302-prestashop-to-prestashop-migration-module.html#/72-entities-1000)
+- [Salesforce to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/726-6814-salesforce-to-prestashop-migration-module.html#/72-entities-1000)
 - [Shopify to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/384-1527-shopify-to-prestashop-migration-module.html#/72-entities-1000)
 - [VirtueMart to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/77-307-virtuemart-to-prestashop-migration-module.html#/72-entities-1000)
 - [Volusion to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/649-6011-volusion-to-prestashop-migration-module.html#/72-entities-1000)
@@ -28,6 +30,7 @@
 - [ZenCart to PrestaShop Migration](https://d2d-soft.com/prestashop-migration/82-332-zencart-to-prestashop-migration-module.html#/72-entities-1000)
 
 ## Supported Platforms
+- [AmeriCommerce](https://www.americommerce.com/)
 - [BigCommerce](https://www.bigcommerce.com/)
 - [CS-Cart](https://www.cs-cart.com/)
 - [CubeCart](https://www.cubecart.com/)
@@ -43,6 +46,7 @@
 - [osCommerce](https://www.oscommerce.com/)
 - [OXID-eShop](https://www.oxid-esales.com)
 - [PrestaShop](https://www.prestashop.com)
+- [Salesforce](https://www.salesforce.com/)
 - [Shopify](https://www.shopify.com/)
 - [VirtueMart](https://virtuemart.net/)
 - [Volusion](https://volusion.com/)
