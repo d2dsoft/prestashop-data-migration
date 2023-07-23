@@ -387,6 +387,9 @@ class D2dDataMigration extends Module
         $context = $this->context;
         $user_id = $context->cookie->id_employee;;
         $library_folder = $this->getLibraryFolder();
+        $library_location = str_replace(_PS_ROOT_DIR_, '', $library_folder);
+        $library_location = str_replace('\\', '/', $library_location);
+        $library_location = ltrim($library_location, '/');
         include_once $this->getInitLibrary();
         D2dInit::initEnv();
         $app = D2dInit::getAppInstance(D2dInit::APP_HTTP, D2dInit::TARGET_RAW, 'prestashop');
@@ -394,11 +397,26 @@ class D2dDataMigration extends Module
         $config = array();
         $config['user_id'] = $user_id;
         $config['upload_dir'] = $library_folder . '/files';
-        $config['upload_location'] = $library_folder . '/files';
+        $config['upload_location'] = $library_location . '/files';
         $config['log_dir'] = $library_folder . '/log';
         $app->setConfig($config);
+        $app->setPluginManager($this);
         $this->migrationApp = $app;
         return $this->migrationApp;
+    }
+
+    public function getPlugin($name){
+        $path = dirname(__FILE__) . '/plugins/' . $name . '.php';
+        if(!file_exists($path)){
+            return false;
+        }
+        require_once $path;
+        $class_name = 'D2dDataMigrationPlugin' . $name;
+        if(!class_exists($class_name)){
+            return false;
+        }
+        $class = new $class_name();
+        return $class;
     }
 
     /* @TODO: UTILS */
