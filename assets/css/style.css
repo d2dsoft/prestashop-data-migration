@@ -159,7 +159,7 @@
 #migration-page .console-box .warning{color: #ffa500;}
 
 /* SETUP CONTENT */
-.htm-gateway-item{margin: 10px; border: 1px solid #4F44AE; padding: 10px; border-radius: 10px; width: 100%; min-height: 150px;}
+.htm-gateway-item{margin: 10px; border: 1px solid #4F44AE; padding: 10px; border-radius: 10px; width: 100%; font-size: 13px;height: 100%;}
 .htm-gateway-item > p{margin-top: 0;margin-bottom: 1rem;}
 
 /* UPLOAD CONTENT */
@@ -193,6 +193,7 @@
 .platform-icon-base.platform-icon-americommerce{background-image: url("../img/platform/icon-americommerce.png");}
 .platform-icon-base.platform-icon-arastta{background-image: url("../img/platform/icon-arastta.png");}
 .platform-icon-base.platform-icon-aspdotnetstorefront{background-image: url("../img/platform/icon-aspdotnetstorefront.png");}
+.platform-icon-base.platform-icon-bagisto{background-image: url("../img/platform/icon-bagisto.png");}
 .platform-icon-base.platform-icon-bigcartel{background-image: url("../img/platform/icon-bigcartel.png");}
 .platform-icon-base.platform-icon-bigcommerce{background-image: url("../img/platform/icon-bigcommerce.png");}
 .platform-icon-base.platform-icon-cart66{background-image: url("../img/platform/icon-cart66.png");}

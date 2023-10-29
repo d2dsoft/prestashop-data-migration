@@ -195,6 +195,12 @@ class D2dDataMigration extends Module
         if(!ini_get('allow_url_fopen')){
             $this->setMessage('error', 'The PHP "allow_url_fopen" must is enabled. Please follow <a href="https://www.a2hosting.com/kb/developer-corner/php/using-php.ini-directives/php-allow-url-fopen-directive" target="_blank">here</a> to enable the setting.');
         }
+        if (!extension_loaded('zip')) {
+            $this->setMessage('error', 'PHP Zip extension is not installed. Please install the Zip extension.');
+        }
+        /*if (!function_exists('eval')) {
+            $this->setMessage('error', 'Please enable the eval function.');
+        }*/
         /* @var $context ContextCore */
         $context = $this->context;
         $form_url = $this->getCurrentUrl();
